@@ -9,6 +9,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Dropdown } from 'antd';
 import { menuItems } from "../../../helpers/userMenu";
 import { signOut } from "../../../services/signOut";
+import Logo from "./Logo";
 
 export default function Navbar({ session }) {
   const location = useLocation();
@@ -22,7 +23,7 @@ export default function Navbar({ session }) {
   }, [location.pathname]);
 
   const handleDashboard = () => {
-    navigate("/dashboard/projects")
+    navigate("/dashboard")
   }
 
   const handleSignOut = async () => {
@@ -43,13 +44,7 @@ export default function Navbar({ session }) {
                 <MenuIcon setOpenMenuIcon={setOpenMenuIcon} />
               )}
             </div>
-            <div>
-              <h1 className="font-poppins flex gap-1 font-semibold whitespace-nowrap tracking-[1px] dark:text-white text-xl sm:text-2xl">
-                <span className="text-sky-400 dark:text-teal-500">{`{`}</span>
-                <span >{`SH`}</span>
-                <span className="text-sky-400 dark:text-teal-500">{`}`}</span>
-              </h1>
-            </div>
+            <Logo />
           </div>
           <div className="flex items-center justify-end">
             <div className="hidden md:block">

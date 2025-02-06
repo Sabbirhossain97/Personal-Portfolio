@@ -4,8 +4,9 @@ import { deleteProject } from "../../services/dashboard/deleteProject";
 import { message } from "antd";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-export const tableColumns = (setLoading, isProjectModalOpen, setIsProjectModalOpen, setAction, handleProjectEdit) => {
+export const tableColumns = (setLoading) => {
 
     const handleDelete = async (id) => {
         try {
@@ -117,15 +118,11 @@ export const tableColumns = (setLoading, isProjectModalOpen, setIsProjectModalOp
                             <MdDelete className="text-2xl text-red-500 hover:text-red-600 transition duration-300" />
                         </Button>
                     </Popconfirm>
-                    <button className="text-indigo-600 hover:text-indigo-900"
-                        onClick={() => {
-                            setIsProjectModalOpen(!isProjectModalOpen)
-                            setAction("edit");
-                            handleProjectEdit(record.id)
-                        }}
-                    >
-                        <FaEdit className="text-2xl text-sky-500 hover:text-sky-600 dark:text-teal-500 dark:hover:text-teal-600 transition duration-300" />
-                    </button>
+                    <Link to={`/dashboard/project/${record.id}/update`}>
+                        <button>
+                            <FaEdit className="text-2xl text-sky-500 hover:text-sky-600 dark:text-teal-500 dark:hover:text-teal-600 transition duration-300" />
+                        </button>
+                    </Link>
                 </div>
             )
         },

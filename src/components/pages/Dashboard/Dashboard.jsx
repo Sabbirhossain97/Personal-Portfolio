@@ -1,128 +1,39 @@
-import { useState, useEffect } from "react";
-import AddProject from "./AddProject";
-import { Table, Modal, Spin, Switch } from 'antd';
+import './Table.css'
+import { useState } from "react";
+import { Switch } from 'antd';
 import { sideBarContents } from "../../../helpers/SidebarContents";
 import { SidebarArrow, DarkThemeIcon, LightThemeIcon } from "../../SVG/SvgComponents";
-import Spinner from "../../helpers/Spinner";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { signOut } from "../../../services/signOut";
 import { useDarkMode } from "../../../hooks/useDarkMode";
-import { tableColumns } from "../../../helpers/dashboard/tableColumn";
 import { GoSidebarCollapse } from "react-icons/go";
-import { getAllProjects } from "../../../services/dashboard/getAllProjects";
-import { uploadCV } from "../../../services/dashboard/uploadCV";
-import './Table.css'
+import { MdKeyboardBackspace } from "react-icons/md";
+import Logo from "../../layout/common/Logo";
 
-export default function Sidebar() {
+export default function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { dark, setDark } = useDarkMode();
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [allprojects, setAllProjects] = useState([]);
-  const [addProject, setAddProject] = useState({
-    title: "",
-    image: "",
-    githublink: "",
-    livelink: "",
-    project_type: "",
-    features: [],
-    technologies: [],
-    design_source: ""
-  });
-  const [action, setAction] = useState("create");
-  const [previewImage, setPreviewImage] = useState(null);
-  const [editProjectId, setEditProjectId] = useState(null);
-  const [isCvUploaded, setIsCvUploaded] = useState(false)
 
-  const getProjects = async () => {
-    try {
-      let data = await getAllProjects()
-      const mappedData = data.map((project) => {
-        return {
-          id: project.id,
-          title: project.title,
-          image: project.image,
-          githublink: project.githublink,
-          livelink: project.livelink,
-          project_type: project.project_type,
-          features: project?.features ? JSON.parse(project.features) : [],
-          technologies: project?.technologies ? JSON.parse(project.technologies) : [],
-          inserted_at: project.inserted_at
-        }
-      })
-      setAllProjects(mappedData);
-    } catch (error) {
-      console.error(error);
-    }
+  const themeHandler = (checked) => {
+    setDark(checked ? true : !dark);
   };
-
-  const handleProjectAddCancel = () => {
-    setAddProject({
-      title: "",
-      image: "",
-      githublink: "",
-      livelink: "",
-      project_type: "",
-      features: [],
-      technologies: [],
-      design_source: ""
-    })
-    setPreviewImage(null);
-    setIsProjectModalOpen(!isProjectModalOpen);
-    setAction("create");
-    setEditProjectId(null);
-  }
-
-  const handleCVUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      setIsCvUploaded(true);
-      await uploadCV(file)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setIsCvUploaded(false);
-    }
-  };
-
-  useEffect(() => {
-    getProjects();
-  }, [isProjectModalOpen, loading]);
-
-  const handleProjectEdit = (id) => {
-    setEditProjectId(id)
-  }
 
   const handleSignOut = async () => {
     await signOut(navigate)
   }
 
-  const themeHandler = (checked) => {
-    if (checked) {
-      setDark(true)
-    } else {
-      setDark(false)
-    }
-  };
-
   return (
-    <div className="flex pb-10">
+    <div className="flex pb-10 relative">
       {/* sidebar */}
       <div
         className={`${sideBarOpen ? "translate-x-0" : "-translate-x-full"
           } min-h-screen fixed z-[1000] w-64 py-4 px-3 shadow-3xl bg-white dark:bg-slate-800 border-r border-zinc-200 dark:border-zinc-700/50 transition duration-300`}
       >
         <div className="flex justify-between items-center py-2">
-          <div className="p-2">
-            <h1 className="font-poppins flex gap-1 font-semibold whitespace-nowrap tracking-[1px] dark:text-white text-xl sm:text-2xl">
-              <span className="text-sky-400 dark:text-teal-500">{`{`}</span>
-              <span >{`SH`}</span>
-              <span className="text-sky-400 dark:text-teal-500">{`}`}</span>
-            </h1>
-          </div>
+          <Logo />
           {sideBarOpen &&
             (
               <button onClick={() => setSideBarOpen(!sideBarOpen)}>
@@ -173,71 +84,23 @@ export default function Sidebar() {
                 {dark ? "Dark" : "Light"} Theme
               </span>
             </p>
-            <Switch onChange={themeHandler} size="small" />
+            <Switch onChange={themeHandler} checked={dark} size="small" />
           </div>
         </div>
       </div>
-
-      <div className={`mt-[100px] flex flex-col justify-self-center transition duration-300 w-full px-6 sm:px-6 lg:px-8 z-1 ${sideBarOpen && 'blur-sm dark:blur-md'} `}>
-        <div className="flex flex-row gap-4 sm:gap-0 overflow-hidden justify-between items-end sm:w-full md:w-full">
-          <div>
-            <GoSidebarCollapse onClick={() => setSideBarOpen(!sideBarOpen)} className="text-3xl dark:text-white dark:hover:text-teal-500 hover:text-sky-400 transition duration-300 cursor-pointer" />
-          </div>
-          <div className="flex gap-4">
-            <div className="overflow-hidden sm:mt-0 sm:ml-16 sm:flex-none">
-              <label htmlFor="file" className="cursor-pointer overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-zinc-200 dark:bg-zinc-700/50 dark:hover:bg-zinc-900/50 dark:text-zinc-300 px-4 py-2 text-sm font-medium transition duration-300 text-zinc-900 shadow-sm hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <input
-                  type="file"
-                  id="file"
-                  accept="application/pdf"
-                  onChange={(e) => handleCVUpload(e)}
-                  className="hidden mt-[5px] w-full text-sm text-gray-900 bg-zinc-200 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none"
-                />
-                {isCvUploaded ? <><Spinner /> <span className="pl-3">Processing</span> </> : "Upload CV"}
-              </label>
-            </div>
-            <div className="overflow-hidden sm:flex-none">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsProjectModalOpen(!isProjectModalOpen);
-                  setAction("create");
-                  setEditProjectId(null)
-                }
-                }
-                className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-zinc-200 dark:bg-zinc-700/50 dark:hover:bg-zinc-900/50 dark:text-zinc-300 px-4 py-2 text-sm font-medium transition duration-300 text-zinc-900 shadow-sm hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-              >
-                Add projects
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="relative">
-          <Table
-            scroll={{ x: 1000 }}
-            style={{ marginTop: '20px' }}
-            columns={tableColumns(setLoading, isProjectModalOpen, setIsProjectModalOpen, setAction, handleProjectEdit)}
-            dataSource={allprojects}
-            pagination={false}
-            className="custom-table border-separate border-spacing-0"
-          />
-          {loading ? <Spin className="absolute top-1/2 left-1/2" /> : ""}
-        </div>
-        <Modal width={800} open={isProjectModalOpen} onCancel={handleProjectAddCancel} footer={null}>
-          <AddProject
-            isProjectModalOpen={isProjectModalOpen}
-            setIsProjectModalOpen={setIsProjectModalOpen}
-            addProject={addProject}
-            setAddProject={setAddProject}
-            editProjectId={editProjectId}
-            action={action}
-            previewImage={previewImage}
-            setPreviewImage={setPreviewImage}
-            setAction={setAction}
-            loading={loading}
-            setLoading={setLoading}
-          />
-        </Modal>
+      <div className="absolute top-4 left-6">
+        <GoSidebarCollapse onClick={() => setSideBarOpen(!sideBarOpen)} className="text-4xl dark:text-zinc-500 dark:hover:text-teal-500 hover:text-sky-400 transition duration-300 cursor-pointer" />
+      </div>
+      {location.pathname.includes("/createproject") || location.pathname.includes("/update") ? <div className="absolute top-4 left-20">
+        <Link to="/dashboard"
+          className="bg-gray-100 flex items-center gap-2 border dark:text-zinc-400 border-gray-300 hover:bg-gray-200 dark:border-zinc-700/80 transition duration-300 dark:bg-zinc-900 dark:hover:bg-zinc-800 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-1.5 mt-[2px] text-center "
+        >
+          <MdKeyboardBackspace />
+          back to Projects
+        </Link>
+      </div> : ""}
+      <div className={`mt-[100px] rounded-lg flex flex-col justify-center items-center transition duration-300 w-full px-6 z-1 ${sideBarOpen && 'blur-sm dark:blur-md'} `}>
+        <Outlet sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen} />
       </div>
     </div>
   );

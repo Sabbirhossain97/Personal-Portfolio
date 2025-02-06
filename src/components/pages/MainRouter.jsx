@@ -8,7 +8,7 @@ import Contact from "./Contact/Contact";
 import Navbar from "../layout/common/Navbar";
 import Sign from "../pages/Auth/Sign";
 import ResetPass from "./Auth/ResetPass";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 import NoPage from "../../components/pages/NoPage/NoPage";
 import PrivateRoute from "./Auth/PrivateRoute";
 import AuthenticatedRoute from "./Auth/AuthenticatedRoute";
@@ -17,7 +17,8 @@ import Footer from "../../components/layout/common/Footer";
 import ScrollToTop from "../helpers/ScrollToTop";
 import useAOS from "../../hooks/useAOS";
 import Intro from "../layout/common/Intro";
-
+import AddProject from "./Dashboard/AddProject";
+import AllProjects from "./Dashboard/Projects";
 
 export default function MainRouter() {
 
@@ -70,16 +71,29 @@ export default function MainRouter() {
                     </Route>
                     <Route element={<PrivateRoute session={session} />}>
                         <Route
-                            path="/dashboard/projects"
+                            path="/dashboard"
                             exact
                             element={<Dashboard />
                             }
-                        />
+                        >
+                            <Route
+                                index
+                                element={<AllProjects />}
+                            />
+                            <Route
+                                path="createproject"
+                                element={<AddProject />}
+                            />
+                            <Route
+                                path="project/:id/update"
+                                element={<AddProject />}
+                            />
+                        </Route>
                     </Route>
                     <Route path="*" element={<NoPage />} />
                 </Routes>
                 <ScrollToTop />
-               {!isDashboard && <Footer /> }
+                {!isDashboard && <Footer />}
             </>
         );
 }
