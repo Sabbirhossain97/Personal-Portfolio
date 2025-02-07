@@ -5,7 +5,7 @@ import { sideBarContents } from "../../../helpers/SidebarContents";
 import { SidebarArrow, DarkThemeIcon, LightThemeIcon } from "../../SVG/SvgComponents";
 import { useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
-import { signOut } from "../../../services/signOut";
+import { signOut } from "../../../services/auth/signOut";
 import { useDarkMode } from "../../../hooks/useDarkMode";
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdKeyboardBackspace } from "react-icons/md";
@@ -22,7 +22,11 @@ export default function Dashboard() {
   };
 
   const handleSignOut = async () => {
-    await signOut(navigate)
+    try {
+      await signOut(navigate)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

@@ -6,6 +6,7 @@ import { loadProject } from "../../../services/dashboard/loadProject";
 import { createProject } from "../../../services/dashboard/createProject";
 import { updateProject } from "../../../services/dashboard/updateProject";
 import { useLocation, useNavigate } from "react-router-dom";
+import Spinner from "../../helpers/Spinner";
 
 export default function AddProject() {
   const navigate = useNavigate()
@@ -16,21 +17,28 @@ export default function AddProject() {
   const { session } = useSession();
   const [projects, setProjects] = useState({});
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isCreate) {
       try {
+        setLoading(true)
         await createProject(session, projects, file, navigate);
       } catch (error) {
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
     else {
       try {
+        setLoading(true)
         await updateProject(session, projects, file, slug, navigate)
       } catch (error) {
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
   };
@@ -92,7 +100,7 @@ export default function AddProject() {
             type="text"
             id="title"
             name="title"
-            value={projects?.title}
+            value={projects?.title ?? ""}
             onChange={handleFormData}
             className="bg-zinc-100 w-full p-2.5 text-gray-900 dark:text-zinc-400 text-sm rounded-lg transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20"
             required
@@ -214,9 +222,9 @@ export default function AddProject() {
         <div className="flex flex-col items-center mb-4">
           <button
             type="submit"
-            className="bg-gray-100 border dark:text-zinc-400 border-gray-300 hover:bg-gray-200 dark:border-transparent transition duration-300 dark:bg-zinc-900/50 dark:hover:bg-zinc-900 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
+            className="bg-gray-100 border flex gap-2 items-center justify-center dark:text-zinc-400 border-gray-300 hover:bg-gray-200 dark:border-transparent transition duration-300 dark:bg-zinc-900/50 dark:hover:bg-zinc-900 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
           >
-            Submit
+            {loading ? <><Spinner /> Processing...</> : 'Submit'}
           </button>
         </div>
       </form>

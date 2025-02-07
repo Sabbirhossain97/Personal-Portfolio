@@ -72,7 +72,7 @@ function AllProjects() {
                 <Table
                     scroll={{ x: 1000 }}
                     style={{ marginTop: '20px', opacity: loading ? '50%' : '100%' }}
-                    columns={tableColumns(setLoading)}
+                    columns={tableColumns(setLoading, getProjects)}
                     dataSource={allprojects}
                     pagination={false}
                     className="custom-table border-separate border-spacing-0"

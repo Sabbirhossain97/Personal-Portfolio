@@ -55,6 +55,7 @@ function AttachImage({ setFile, isCreate, projects }) {
                                             <input
                                                 id="file"
                                                 type="file"
+                                                required
                                                 name="file"
                                                 accept="image/gif, image/*"
                                                 onChange={handleUpload}
@@ -103,7 +104,6 @@ function AttachImage({ setFile, isCreate, projects }) {
                                     </label>
                                 </div>
                             </div>
-
                         }
                     </div>
                 }

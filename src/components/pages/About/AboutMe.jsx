@@ -5,7 +5,7 @@ import { FaSkype } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
 import { certifications } from '../../../helpers/certification';
 import { Download, Experience } from '../../SVG/SvgComponents';
-import { downloadCv } from "../../../services/downloadCV";
+import { downloadCv } from "../../../services/dashboard/downloadCV";
 import { LeftGradient } from "../../helpers/Gradient";
 
 function AboutMe() {

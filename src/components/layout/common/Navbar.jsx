@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { AiOutlineUser } from "react-icons/ai";
 import { Dropdown } from 'antd';
 import { menuItems } from "../../../helpers/userMenu";
-import { signOut } from "../../../services/signOut";
+import { signOut } from "../../../services/auth/signOut";
 import Logo from "./Logo";
 
 export default function Navbar({ session }) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
-import { passwordUpdate } from "../../../services/updatePass";
+import { passwordUpdate } from "../../../services/auth/updatePass";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Spinner from "../../helpers/Spinner";

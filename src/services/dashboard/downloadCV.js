@@ -1,4 +1,4 @@
-import { portfolioClient } from "./config";
+import { portfolioClient } from "../config";
 import { saveAs } from 'file-saver';
 
 export const downloadCv = async () => {

@@ -6,12 +6,13 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export const tableColumns = (setLoading) => {
+export const tableColumns = (setLoading, getProjects) => {
 
     const handleDelete = async (id) => {
         try {
             setLoading(true)
             await deleteProject(id)
+            await getProjects();
         } catch (error) {
             message.error(error);
         } finally {

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { emailService } from "../../../services/email";
+import { emailService } from "../../../services/auth/email";
 import { Spinner } from "../../SVG/SvgComponents";
 import { LeftGradient } from "../../helpers/Gradient"
 import toast from "react-hot-toast";

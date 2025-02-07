@@ -1,5 +1,5 @@
 import emailjs from "@emailjs/browser";
-import { emailServiceId, emailPublicKey, emailTemplateId } from "./config";
+import { emailServiceId, emailPublicKey, emailTemplateId } from "../config";
 
 export const emailService = async (form) => {
 
