@@ -17,7 +17,11 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
         try {
           setLoading(true)
           let data = await singleProjectData(selectedProjectId);
-          setProjectDetails(data)
+          setProjectDetails({
+            ...data,
+            features: data?.features ? JSON.parse(data.features) : [],
+            technologies: data?.technologies ? JSON.parse(data.technologies) : [],
+          })
         }
         catch (error) {
           console.log(error)
@@ -40,7 +44,7 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
 
   return (
 
-    <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={800} zIndex={3000}>
+    <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={800} zIndex={3000} className="custom-modal">
       <div className="h-full relative rounded-lg">
         {loading ?
           <div className="h-screen flex items-center justify-center">
@@ -50,7 +54,7 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
           <div
             className="h-full mt-8 mb-8"
           >
-            <h3 className="mb-4 text-xl font-medium text-gray-900 ">
+            <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
               Thumbnail
             </h3>
             <img
@@ -62,31 +66,31 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
               className="rounded-md"
               alt="thumbnail"
             />
-            <h3 className="mt-4 mb-4 text-xl font-medium text-gray-900 ">
+            <h3 className="mt-4 mb-4 text-xl font-semibold text-gray-900 dark:text-white">
               Project Title
             </h3>
-            <p className="text-lg font-medium text-zinc-400">
+            <p className="text-lg font-normal text-zinc-400">
               {projectDetails?.title}
             </p>
-            <h3 className="mt-4 mb-4 text-xl font-medium text-gray-900 ">
+            <h3 className="mt-4 mb-4 text-xl font-semibold text-gray-900 dark:text-white">
               Project Type
             </h3>
-            <p className="text-lg font-medium text-zinc-400">
+            <p className="text-lg font-normal text-zinc-400">
               {projectDetails?.project_type}
             </p>
             {projectDetails?.project_type !== "Design" &&
               <>
-                <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
+              <h3 className="mb-4 mt-4 text-xl font-semibold text-gray-900 dark:text-white">
                   Project Features
                 </h3>
                 <div className="flex">
                   <div className="font-medium text-md text-gray-500 text-left">
-                    {projectDetails && projectDetails?.features?.split(".").map((item, key) => (
-                      <div key={key} className="flex flex-row">
+                    {projectDetails && projectDetails?.features?.map((item, index) => (
+                      <div key={index} className="flex flex-row">
                         <span>
                           <TiTick className="mt-3 text-sky-400 dark:text-teal-500 text-lg" />
                         </span>
-                        <li className="list-none ml-1 mt-2">{item}</li>
+                        <li className="list-none ml-1 mt-2 dark:text-zinc-400">{item}</li>
                       </div>
                     ))}
                   </div>
@@ -96,7 +100,7 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
             {
               projectDetails?.project_type === "Design" &&
               <>
-                <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
+                <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 dark:text-white">
                   Design Source
                 </h3>
                 <div className="flex flex-row">
@@ -105,13 +109,13 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
                 </div>
               </>
             }
-            <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
+            <h3 className="mb-4 mt-4 text-xl font-semibold text-gray-900 dark:text-white">
               Technologies
             </h3>
-            <div className="font-medium text-gray-500 flex flex-row flex-wrap">
-              {projectDetails && projectDetails?.technologies?.split(",").map((item, key) => (
-                <div key={key} className="flex flex-row">
-                  <li className="list-none text-md px-2 mt-1 ml-1 border border-sky-400 dark:border-teal-500/50 rounded-lg border-x-2">
+            <div className="font-medium text-gray-500 flex flex-row gap-2 flex-wrap">
+              {projectDetails && projectDetails?.technologies?.map((item, index) => (
+                <div key={index} className="flex flex-row">
+                  <li className="list-none text-md px-2 text-zinc-600 dark:text-zinc-300 bg-sky-200/50 dark:bg-zinc-700 rounded-lg">
                     <p className="px-2">{item}</p>
                   </li>
                 </div>

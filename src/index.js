@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import MainRouter from "./components/pages/MainRouter";
 import { DarkModeProvider } from "./hooks/useDarkMode";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <DarkModeProvider>
-        <MainRouter />
-    </DarkModeProvider>
+    <Router>
+        <DarkModeProvider>
+            <MainRouter />
+        </DarkModeProvider>
+    </Router>
 );
 

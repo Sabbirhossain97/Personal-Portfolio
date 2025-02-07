@@ -20,9 +20,6 @@ module.exports = {
       '6rem-4rem': '2rem 2rem',
       '16px-16px': '16px 16px'
     },
-    backgroundImage: {
-      'radial-dots': 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
-    },
   },
   plugins: [require("tailwind-scrollbar")],
 };

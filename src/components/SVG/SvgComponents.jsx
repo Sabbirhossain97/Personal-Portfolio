@@ -369,3 +369,23 @@ export const Edit = () => {
         </svg>
     )
 }
+
+export const SidebarArrow = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            color="white"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="h-10 w-10 text-sky-400 dark:text-teal-500 rounded-full p-2"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+        </svg>
+    )
+}

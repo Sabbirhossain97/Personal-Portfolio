@@ -1,8 +1,60 @@
-.ant-table-thead {
-font-family: 'Poppins';
-background: "blue"
+:root {
+    --table-bg: #ffffff;
+    --table-text: #000000;
+    --table-border: 1px solid #e4e4e7
 }
 
-.ant-table-tbody {
-font-family: 'Poppins';
+.ant-switch {
+    background: rgb(100, 99, 99);
+}
+
+.ant-switch.ant-switch-checked {
+    background: #14b8a6;
+}
+.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+    background: #09a593 !important;
+}
+
+.dark {
+    --table-bg: #1a2230;
+    --table-text: #a1a1aa;
+    --table-border: 1px solid rgb(63 63 70)
+}
+
+.custom-table {
+    background-color: var(--table-bg) !important;
+    color: var(--table-text) !important;
+    border: var(--table-border) !important;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.custom-table .ant-table-thead {
+    font-family: 'Poppins';
+    border-bottom: 1px solid rgb(63 63 70 / 0.5);
+}
+
+.custom-table .ant-table-thead>tr:first-child {
+    border-start-start-radius: 0px !important;
+}
+
+.custom-table .ant-table-thead :last-child {
+    border-start-end-radius: 0 !important;
+}
+
+.custom-table .ant-table-tbody {
+    font-family: 'Poppins';
+    border: 1px solid rgb(63 63 70 / 0.5);
+}
+
+.custom-table .ant-table-thead>tr>th {
+    background-color: var(--table-bg) !important;
+    color: var(--table-text) !important;
+    border-bottom: var(--table-border) !important
+}
+
+.custom-table .ant-table-tbody>tr>td {
+    background-color: var(--table-bg) !important;
+    color: var(--table-text) !important;
+    border-bottom: var(--table-border) !important
 }

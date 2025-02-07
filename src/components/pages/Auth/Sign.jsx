@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
-import { signInUser } from "../../../services/signin";
-import { resetPass } from "../../../services/resetPass";
+import { signInUser } from "../../../services/auth/signin";
+import { resetPass } from "../../../services/auth/resetPass";
 import Spinner from "../../helpers/Spinner";
 import ResetPassModal from "./ResetPassModal";
 
