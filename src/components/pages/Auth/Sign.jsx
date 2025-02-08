@@ -53,12 +53,12 @@ export default function Sign() {
         formData={formData}
         setFormData={setFormData}
       />
-      <div className="mx-auto w-full px-6 md:px-0 md:max-w-lg">
+      <div className="mx-auto w-full px-4 sm:px-10 md:px-0 md:max-w-lg">
         <div className="bg-white dark:bg-slate-800 py-8 px-4 border border-zinc-200 dark:border-zinc-700/80 rounded-lg">
           <h2 className="text-center text-2xl font-bold tracking-tight dark:text-white text-slate-900">
             Sign In
           </h2>
-          <div className="mt-6 px-2">
+          <div className="mt-6 px-0 sm:px-0">
             <form
               onSubmit={handleLogin}
             >

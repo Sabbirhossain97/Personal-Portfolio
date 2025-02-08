@@ -36,7 +36,7 @@ export default function Navbar({ session }) {
     <div className="fixed left-0 right-0 top-0 z-[2000] bg-white dark:bg-slate-800/50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-xl fixed -top-5 md:-top-5 left-0 right-0">
         <div className="flex h-16 mt-6 items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="md:hidden">
               {openMenuIcon ? (
                 <CloseIcon setOpenMenuIcon={setOpenMenuIcon} />
@@ -94,18 +94,33 @@ export default function Navbar({ session }) {
                 }
               </div>
             </div>
-            <div className="ml-4 items-center">
-              <button
-                type="button"
-                onClick={() => setDark(!dark)}
-                className="rounded-md px-3 py-1 transition duration-300"
-              >
-                {dark ? (
-                  <DarkThemeIcon />
-                ) : (
-                  <LightThemeIcon />
-                )}
-              </button>
+            <div className="ml-4 flex gap-2 items-center">
+              {session && <div className="mt-1 md:hidden">
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  trigger={['click']}
+                  overlayStyle={{ zIndex: 2500, marginTop: "15px" }}
+                >
+                  <button>
+                    <AiOutlineUser className="text-2xl hover:text-sky-400 hover:dark:text-teal-500 transition duration-300 dark:text-white rounded-full" />
+                  </button>
+                </Dropdown>
+              </div>}
+              <div >
+                <button
+                  type="button"
+                  onClick={() => setDark(!dark)}
+                  className="rounded-md px-3 py-1 transition duration-300"
+                >
+                  {dark ? (
+                    <DarkThemeIcon />
+                  ) : (
+                    <LightThemeIcon />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
