@@ -1,8 +1,15 @@
 import { portfolioClient } from "../config";
 
-export const projectsData = async () => {
+export const projectsData = async (filter) => {
     try {
-        let { data, error } = await portfolioClient.from("projects").select("*");
+        let query = portfolioClient.from("projects").select("*");
+
+        if (filter && filter !== 'all') {
+            query = query.eq('project_type', filter)
+        }
+
+        let { data, error } = await query
+
         if (error) {
             throw error
         }

@@ -80,7 +80,7 @@ export default function ProjectDetailsModal({ isModalOpen, setIsModalOpen, selec
             </p>
             {projectDetails?.project_type !== "Design" &&
               <>
-              <h3 className="mb-4 mt-4 text-xl font-semibold text-gray-900 dark:text-white">
+                <h3 className="mb-4 mt-4 text-xl font-semibold text-gray-900 dark:text-white">
                   Project Features
                 </h3>
                 <div className="flex">

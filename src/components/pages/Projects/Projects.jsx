@@ -9,38 +9,50 @@ export default function Projects() {
   const [allprojects, setAllProjects] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const [filter, setFilter] = useState('all')
 
   useEffect(() => {
     const getProjects = async () => {
       try {
-        let data = await projectsData()
+        let data = await projectsData(filter)
         setAllProjects(data)
       } catch (error) {
         console.error(error)
       }
     };
     getProjects();
-  }, []);
-
+  }, [filter]);
 
   const handleProjectDetailsModal = (id) => {
     setIsModalOpen(true);
     setSelectedProjectId(id)
   }
 
+  const handleFilter = (e) => {
+    setFilter(e.target.value)
+  }
+
   return (
-    <main className="pt-[50px] bg-white dark:bg-slate-800 min-h-screen relative">
-      <LeftGradient/>
+    <main className="mt-[80px] bg-white dark:bg-slate-800 min-h-screen relative">
+      <LeftGradient />
       <ProjectDetailsModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         selectedProjectId={selectedProjectId}
         setSelectedProjectId={setSelectedProjectId}
       />
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl border">
         <div data-aos="fade-up" className="relative px-4 sm:px-10 xl:px-24">
           <div className="transition-opacity mt-16 sm:mt-20">
-            <ul className="mx-auto mt-32 grid grid-cols-1 gap-6 sm:px-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
+            <div className="text-white flex justify-end">
+              <select onChange={(e) => handleFilter(e)} id="project-type" className="custom-select bg-gray-50 border border-gray-300 transition duration-300 hover:border-sky-500 dark:hover:border-teal-500 text-gray-900 text-sm rounded-lg block p-2.5 focus:border-sky-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option selected value="all">All Projects</option>
+                <option value="Design">Figma to Website</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Full Stack">Full Stack</option>
+              </select>
+            </div>
+            <ul className="mx-auto mt-8 grid grid-cols-1 gap-6 sm:px-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
               {allprojects.map((project, index) => (
                 <li
                   data-aos="zoom-in"
