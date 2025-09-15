@@ -15,7 +15,7 @@ export const certifications = [
         Institution: "East West University",
         certificate: "Bachelor in CSE",
         logo: "https://i.imgur.com/ptq7E9Q.jpg",
-        Issued: "2015-2020",
+        Issued: "2015-2022",
     },
     {
         Institution: "freeCodeCamp",
