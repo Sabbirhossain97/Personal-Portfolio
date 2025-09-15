@@ -11,7 +11,7 @@ import "swiper/css/bundle";
 export default function Skills() {
   return (
     <div className="relative py-44">
-      <LeftGradient/>
+      <LeftGradient />
       <div className="max-w-7xl mx-auto px-6 sm:px-10 xl:px-24">
         <div className="">
           <h2 data-aos="fade-up" className="text-center font-semibold mb-4 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">
@@ -40,15 +40,17 @@ export default function Skills() {
               }}
             >
               <div>
-                {skillslist.map((skill, index) => (
-                  <SwiperSlide key={index}>
+                {skillslist.map((skill, index) => {
+                  let heightClass = skill === "expressjs" ? "h-24": "h-24"
+                  return (<SwiperSlide key={index}>
                     <img
                       src={`/assets/${skill}.png`}
-                      className="h-24 w-auto object-fit"
+                      className={`${heightClass} w-auto`}
                       alt="error"
                     />
                   </SwiperSlide>
-                ))}
+                  )
+                })}
               </div>
             </Swiper>
           </div>

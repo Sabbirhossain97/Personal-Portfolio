@@ -1,1 +1,1 @@
-export const skillslist = ['JS', 'typescript', 'react', 'Next', 'svelte', 'HTML5', 'css', 'tailwind', 'ant-design', 'MUI', 'redux', 'supabase', 'firebase', 'git', 'postman', 'vercel']
+export const skillslist = ['JS', 'typescript', 'react', 'Next', 'svelte', 'HTML5', 'css', 'tailwind', 'ant-design', 'MUI', 'redux', 'nodejs','expressjs','mongodb','supabase', 'firebase', 'git', 'postman', 'vercel']
