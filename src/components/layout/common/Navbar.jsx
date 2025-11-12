@@ -34,8 +34,8 @@ export default function Navbar({ session }) {
 
   return (
     <div className="fixed left-0 right-0 top-0 z-[2000] bg-white dark:bg-slate-800/50">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-xl fixed -top-5 md:-top-5 left-0 right-0">
-        <div className="flex h-16 mt-6 items-center justify-between">
+      <nav className="w-full bg-opacity-50 backdrop-blur-xl -top-5 md:-top-5 left-0 right-0">
+        <div className="flex h-16 mt-6 px-4 sm:px-10 xl:px-24 items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
             <div className="md:hidden">
               {openMenuIcon ? (
