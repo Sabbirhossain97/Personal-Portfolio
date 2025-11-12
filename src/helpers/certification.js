@@ -1,5 +1,11 @@
 export const certifications = [
     {
+        Institution: "Edutechs",
+        certificate: "Software Engineer",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQITh5cwD-2krO2um3BVol3kJnjk9LGIVL0NA&s",
+        Issued: "Oct 2025-Present",
+    },
+    {
         Institution: "MoveOn Technologies Ltd",
         certificate: "Software Engineer",
         logo: "https://media.licdn.com/dms/image/C560BAQGpZ8PUN9bhJQ/company-logo_200_200/0/1630662758899?e=2147483647&v=beta&t=qNjM9ENVzLXEpKDpijRBwvdQTFsAs023t_-anhjAUac",
