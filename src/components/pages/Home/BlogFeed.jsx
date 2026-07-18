@@ -44,7 +44,7 @@ export default function BlogFeed() {
             (
               <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto">
 
-                {allBlog.slice(0, 4).map((blog, index) => (
+                {allBlog?.slice(0, 4)?.map((blog, index) => (
                   <div data-aos="zoom-in" key={index} className="relative col-span-2 lg:col-span-1">
                     <div
                       className="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-700/60"
@@ -85,8 +85,8 @@ export default function BlogFeed() {
                 ))}
               </div>
             )}
-          {allBlog.length > 4 &&
-            <div className="mt-8 flex justify-center relative">
+          {allBlog?.length > 4 ?
+            (<div className="mt-8 flex justify-center relative">
               <a
                 href={blogAppUrl}
                 target="_blank"
@@ -94,7 +94,7 @@ export default function BlogFeed() {
                 className="inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full sm:w-[200px]">
                 Show All
               </a>
-            </div>
+            </div>) : <div> <p className="text-[#000]"> No Blogs found </p></div>
           }
         </div>
       </section >

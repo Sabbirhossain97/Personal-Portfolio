@@ -53,7 +53,7 @@ export default function Projects() {
               </select>
             </div>
             <ul className="mx-auto mt-8 grid grid-cols-1 gap-6 sm:px-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
-              {allprojects.map((project, index) => (
+              {allprojects?.map((project, index) => (
                 <li
                   data-aos="zoom-in"
                   key={index}
