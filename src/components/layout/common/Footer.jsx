@@ -1,7 +1,6 @@
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
-import { FaSkype } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -21,7 +20,7 @@ export default function Footer() {
                 </div>
                 <div className="flex gap-6 text-sm text-center font-medium text-zinc-800 dark:text-zinc-200">
                   <p>
-                    © 2025 Sabbir's Portfolio , All rights reserved
+                    © 2026 Sabbir's Portfolio , All rights reserved
                   </p>
                 </div>
                 <div className="flex flex-row p-2">
@@ -30,9 +29,6 @@ export default function Footer() {
                   </a>
                   <a href="https://github.com/Sabbirhossain97" target="_blank" rel="noreferrer">
                     <AiFillGithub className="cursor-pointer text-md text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
-                  </a>
-                  <a href="skype:live:sabbirshawon1994?chat" target="_blank" rel="noreferrer">
-                    <FaSkype className="cursor-pointer text-md text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
                   </a>
                   <a href="mailto:sabbirhossainbd199@gmail.com" target="_blank" rel="noreferrer">
                     <SiGmail className="cursor-pointer text-md text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />

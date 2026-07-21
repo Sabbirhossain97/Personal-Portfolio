@@ -40,10 +40,41 @@ export default function BlogFeed() {
                 <Spinner />
               </div>
             </div>
-          ) :
-            (
-              <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto">
+          ) : allBlog?.length === 0 ? (
+          <div className="relative flex min-h-72 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-zinc-300 bg-zinc-50/50 px-6 py-12 text-center dark:border-zinc-700 dark:bg-zinc-900/30">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-sky-400/10 text-sky-400 dark:bg-teal-500/10 dark:text-teal-500">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="h-7 w-7"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5A3.375 3.375 0 0 0 10.125 2.25H6.75A2.25 2.25 0 0 0 4.5 4.5v15A2.25 2.25 0 0 0 6.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-5.25Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 2.25V6a2.25 2.25 0 0 0 2.25 2.25h3.75M8.25 15h7.5M8.25 18h4.5"
+                />
+              </svg>
+            </div>
 
+            <h3 className="text-xl font-semibold text-zinc-800 dark:text-zinc-100">
+              No blogs found
+            </h3>
+
+            <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+              There are no blog posts available right now. Please check back later.
+            </p>
+          </div>
+          ) : 
+            (
+              <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto border dark:border-white">
                 {allBlog?.slice(0, 4)?.map((blog, index) => (
                   <div data-aos="zoom-in" key={index} className="relative col-span-2 lg:col-span-1">
                     <div
@@ -94,7 +125,7 @@ export default function BlogFeed() {
                 className="inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full sm:w-[200px]">
                 Show All
               </a>
-            </div>) : <div> <p className="text-[#000]"> No Blogs found </p></div>
+            </div>) : null
           }
         </div>
       </section >

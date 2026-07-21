@@ -8,7 +8,7 @@ export const certifications = [
     {
         Institution: "MoveOn Technologies Ltd",
         certificate: "Software Engineer",
-        logo: "https://media.licdn.com/dms/image/C560BAQGpZ8PUN9bhJQ/company-logo_200_200/0/1630662758899?e=2147483647&v=beta&t=qNjM9ENVzLXEpKDpijRBwvdQTFsAs023t_-anhjAUac",
+        logo: "https://content.easy.jobs/assets/201536/company_logo.png",
         Issued: "Aug 2023-Dec 2023",
     },
     {

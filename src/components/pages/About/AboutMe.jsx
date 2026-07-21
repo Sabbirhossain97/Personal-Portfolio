@@ -1,7 +1,6 @@
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
-import { FaSkype } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
 import { certifications } from '../../../helpers/certification';
 import { Download, Experience } from '../../SVG/SvgComponents';
@@ -61,9 +60,6 @@ function AboutMe() {
                                 <a href="https://github.com/Sabbirhossain97" target="_blank" rel="noreferrer">
                                     <AiFillGithub className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
                                 </a>
-                                <a href="skype:live:sabbirshawon1994?chat" target="_blank" rel="noreferrer">
-                                    <FaSkype className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
-                                </a>
                                 <a href="mailto:sabbirhossainbd199@gmail.com" target="_blank" rel="noreferrer">
                                     <SiGmail className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
                                 </a>
@@ -71,7 +67,11 @@ function AboutMe() {
                             }
                         </div>
                         <div data-aos="zoom-in" className="w-full lg:w-1/2 flex items-center justify-center">
-                            <img className="object-cover object-center rounded-full w-3/4 sm:w-1/2 lg:w-3/4" alt="hero" src="./assets/me.jpg" />
+                            <img
+                                className="aspect-square w-64 sm:w-72 lg:w-96 rounded-full object-cover object-bottom"
+                                src="./assets/me.jpg"
+                                alt="Sabbir Hossain"
+                            />
                         </div>
                     </div>
                 </section>
